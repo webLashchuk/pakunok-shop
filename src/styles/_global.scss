@@ -1,0 +1,15 @@
+.layout {
+    max-width: 1600px;
+    width: 100%;
+    padding-inline: 20px;
+    margin: 0 auto;
+
+    &--cart {
+        max-width: 1000px;
+    }
+}
+
+.main-title {
+    font-size: 20px;
+   font-weight: 600;
+}

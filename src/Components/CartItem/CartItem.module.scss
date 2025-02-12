@@ -1,0 +1,61 @@
+.cart {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid #c1c1c1;
+    padding: 20px 15px;
+    gap: 30px;
+    width: 100%;
+}
+
+.image {
+    max-width: 200px;
+    width: 100%;
+    aspect-ratio: 2/1;
+    object-fit: contain;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    align-self: flex-end;
+}
+
+.price {
+    color: #f84147;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.buttons {
+    max-width: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    gap: 10px;
+}
+
+.button {
+    background-color: transparent;
+    white-space: nowrap;
+    transition-property: color;
+    transition-duration: .3s;
+
+    &:hover {
+        color: #00bc52;
+    }
+}
