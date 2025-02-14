@@ -1,29 +1,21 @@
 import CartItem from "../../Components/CartItem/CartItem";
-import { toggleWishList } from "../../store/reducers/wishlistReducer";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 const Cart = () => {
-    let dispatch = useDispatch();
-    let cartItems = useSelector(state => state.cart.products);
-
-    const handleToggleWishList = (product) => {
-        dispatch(toggleWishList(product));
-    };
-
+    let productsInCart = useSelector(state => state.cart.productsInCart);
+    
     return (
         <div className="layout--cart">
             <ul>
-                {cartItems.map((product, index) => (
-                    <CartItem 
-                        key={product.id}
-                        product={product} 
-                        index={index} 
-                        toggleWishListHandler={handleToggleWishList} 
-                    />
-                ))}
+                <div>
+                    <h1 className="visually-hidden">Cart</h1>
+                </div>
+                {productsInCart.length > 0 ? (
+                    productsInCart.map((product) => (<CartItem productInCart={product} />))) : (
+                        <li><h2>Cart is empty</h2></li>
+                    )}
             </ul>
-        </div>
+        </div> 
     );
 };
 

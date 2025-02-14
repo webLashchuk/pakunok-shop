@@ -2,6 +2,12 @@
     margin-bottom: 15px;
 }
 
+.wrapper {
+    display: flex;
+    gap: 40px;
+    padding-top: 20px;
+}
+
 .list {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
