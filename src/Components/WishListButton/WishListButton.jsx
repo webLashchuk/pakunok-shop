@@ -1,8 +1,9 @@
 import icons from "../../assets/images/icons.svg";
 
-const WishListButton = ({toggleWishListHandler, isInWishList}) => {
+const WishListButton = ({ toggleWishListHandler, isInWishList }) => {
+
     return (
-        <button  onClick={toggleWishListHandler} className='wishlist-button wishlist-button--product'>
+        <button onClick={toggleWishListHandler}  className='wishlist-button wishlist-button--product'>
             <svg className="wishlist-icon" width="25" height="25">
                 <use href={`${icons}${isInWishList ? "#icon-heart-solid" : "#icon-heart"}`} />
             </svg>

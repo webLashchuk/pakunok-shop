@@ -1,42 +1,34 @@
 import s from "./Catalog.module.scss";
-import axios from "axios";
+import { fetchProducts } from "../../store/reducers/catalogReducer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "../../store/reducers/catalogReducer";
 import ProductItem from "../ProductItem/ProductItem";
-import Aside from "../Aside/Aside";
 
 const Catalog = () => {
     let dispatch = useDispatch();
-    let catalog = useSelector(state => state.catalog.catalog);
+    const { catalog, status, error } = useSelector(state => state.catalog);
 
     useEffect(() => {
-        axios.get('https://fakestoreapi.com/products')
-            .then(response => {
-                dispatch(setProducts(response.data))
-            });
+        dispatch(fetchProducts()); 
     }, [dispatch]);
+
+    if (status === "loading") return <p>Loading...</p>;
+    if (status === "failed") return <p>Error: {error}</p>;
 
     return (
         <div>
-            <div className={s.wrapper}>
-                <Aside />
-
-                <section>    
-                    <div className={s.content}>
-                        <h1 className="main-title">The best offers for you</h1>
-                    </div>
-
-                    <ul className={s.list}>
-                        {catalog.map((product) => (
-                            <ProductItem 
-                                product={product} 
-                                key={product.id}
-                            />
-                        ))}
-                    </ul>
-                </section>
-            </div>
+            <section>    
+                <ul className={s.list}>
+                    {catalog.map((product) => {
+console.log(product);
+                        return <ProductItem 
+                            product={product} 
+                            key={product.id}
+                        />
+                    }
+                    )}
+                </ul>
+            </section>
         </div>
     );
 }

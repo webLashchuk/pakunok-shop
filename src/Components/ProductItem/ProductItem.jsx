@@ -1,8 +1,9 @@
-import style from "./ProductItem.module.scss";
+import s from "./ProductItem.module.scss";
 import WishListButton from "../WishListButton/WishListButton";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProductsToCart } from "../../store/reducers/cartReducer";
+import { toggleWishList } from "../../store/reducers/wishlistReducer";
 
 const ProductItem = ({ product }) => {
     const navigate = useNavigate();
@@ -12,25 +13,31 @@ const ProductItem = ({ product }) => {
         navigate(`/products/${product.id}`)
     }
 
+    const isInWishList = useSelector(state =>
+        state.wishlist.productsInWishList.some(item => item.id === product.id)
+    );
+
+    const toggleWishListHandler = () => {
+        dispatch(toggleWishList(product));
+    };
+
     const addProductToCartHandler = () => {
         dispatch(addProductsToCart(product))
     }
 
     return (
-        <li className={style.item}>
-            <div className={style.product}>
-                <WishListButton />
+        <li className={s.item}>
+            <div className={s.product}>
+                <WishListButton toggleWishListHandler={toggleWishListHandler} isInWishList={isInWishList} />
                 
-                <img className={style.image} src={product.image} alt={product.title} />
+                <img className={s.image} src={product.image} alt={product.title} />
 
-                <div>
-                    <h2 className={style.title}>{product.title}</h2>
-                    <p className={style.price}>{product.price} $</p>
-                </div>
+                    <h2 className={s.title}>{product.title}</h2>
+                    <p className={s.price}>{product.price} ₴</p>
 
-                <div className={style.buttons}>
-                    <button className={style.button} onClick={showMoreHandler}>Show more...</button>
-                    <button className={style.button} onClick={addProductToCartHandler}>Add to Cart</button>
+                <div className={s.buttons}>
+                    <button className={s.button} onClick={showMoreHandler}>Show more...</button>
+                    <button className={s.button} onClick={addProductToCartHandler}>Add to Cart</button>
                 </div>
             </div>
         </li>

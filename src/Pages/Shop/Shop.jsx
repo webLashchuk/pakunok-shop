@@ -1,16 +1,15 @@
 import Catalog from "../../Components/Catalog/Catalog";
-import { Routes, Route } from "react-router";
-import ProductDescription from "../../Components/Product/ProductDescription";
 
 const Shop = () => {
 
     return (
-        <div>
-            <Routes>
-                <Route path="/" element={<Catalog />} />
-                <Route path="/products/:productId" element={<ProductDescription />} />
-            </Routes>
-        </div>
+        <section>
+            <div className="content">
+                <h1 className="main-title">The best offers for you</h1>
+            </div>
+
+            <Catalog />
+        </section>
     )
 }
 

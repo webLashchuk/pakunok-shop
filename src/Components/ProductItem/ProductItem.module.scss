@@ -4,8 +4,8 @@
     width: 100%;
     display: flex;
     min-height: 100%;
-    border-right: 1px solid #c1c1c1;
-    border-bottom: 1px solid #c1c1c1;
+    border-right: 1px solid var(--global-black-10);
+    border-bottom: 1px solid var(--global-black-10);
 }
 
 .product {
@@ -26,13 +26,13 @@
 
 .title {
     margin-top: auto;
-    font-size: 18px;
+    font-size: 1rem;
     font-weight: 400;
 }
 
 .price {
-    color: #f84147;
-    font-size: 20px;
+    color: var(--global-red);
+    font-size: 1em;
     font-weight: 600;
 }
 
@@ -52,6 +52,6 @@
     transition-duration: .3s;
 
     &:hover {
-        color: #00bc52;
+        color: var(--global-green-80);
     }
 }

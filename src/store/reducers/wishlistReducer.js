@@ -3,21 +3,21 @@ import { createSlice } from "@reduxjs/toolkit";
 const wishlistSlice = createSlice({
     name: "wishlist",
     initialState: {
-        products: [],
+        productsInWishList: [],
     },
     reducers: {
         toggleWishList: (state, action) => {
-            const product = action.payload;
-            const existingIndex = state.products.findIndex(item => item.id === product.id);
+            const { id } = action.payload;
+            const isInWishlist = state.productsInWishList.some(productInWishList => productInWishList.id === id);
 
-            if (existingIndex >= 0) {
-                state.products.splice(existingIndex, 1);
+            if (isInWishlist) {
+                state.productsInWishList = state.productsInWishList.filter(productInWishList => productInWishList.id !== id);
             } else {
-                state.products.push(product);
+                state.productsInWishList.push(action.payload);
             }
-        },
+        }
     },
 });
 
-export const { toggleWishList } = wishlistSlice.actions;
+export const { toggleWishList, isInWishList } = wishlistSlice.actions;
 export default wishlistSlice.reducer;

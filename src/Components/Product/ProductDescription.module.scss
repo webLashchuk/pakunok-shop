@@ -25,3 +25,21 @@
     align-items: center;
     gap: 40px;
 }
+
+.button {
+    padding: 10px 25px;
+    color: #ffffff;
+    border-radius: 10px;
+    background-color: var(--global-green);
+    transition-property: background-color;
+    transition-duration: .3s;
+
+    &--total {
+        font-size: 20px;
+        padding: 20px 40px;
+    }
+
+    &:active {
+        background-color: var(--global-green-80);
+    }
+}

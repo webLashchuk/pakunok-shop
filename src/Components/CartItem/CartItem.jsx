@@ -1,8 +1,9 @@
 import s from './CartItem.module.scss';
 import WishListButton from '../WishListButton/WishListButton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeProductFromCart, incrementQuantity, decrementQuantity } from "../../store/reducers/cartReducer";
 import { useNavigate } from 'react-router';
+import { toggleWishList } from '../../store/reducers/wishlistReducer';
 import Quantity from "../Quantity/Quantity";
 
 const CartItem = ({ productInCart }) => {
@@ -25,6 +26,14 @@ const CartItem = ({ productInCart }) => {
         navigate(`/products/${productInCart.id}`);
     };
 
+    const isInWishList = useSelector(state =>
+        state.wishlist.productsInWishList.some(item => item.id === productInCart.id)
+    );
+
+    const toggleWishListHandler = () => {
+        dispatch(toggleWishList(productInCart));
+    };
+
     return (
      <li>        
         <div className={s.cart} >
@@ -41,7 +50,7 @@ const CartItem = ({ productInCart }) => {
                     <button  className={s.button} onClick={handleShowMore}>Show more...</button>
                     <button  className={s.button} onClick={handleRemove}>Remove</button>
 
-                    <WishListButton />
+                    <WishListButton toggleWishListHandler={toggleWishListHandler} isInWishList={isInWishList} />
                 </div>
             </div>
         </div>
